@@ -4,7 +4,7 @@
 _DIR=$(dirname "$(readlink -f "$0")")
 
 # read .env from current file dir
-LOG_EXT=$(grep LOG_EXT $_DIR/.env | cut -d '=' -f2)
+LOG_EXT=$(grep -Po '(?<=LOG_EXT=").*?(?=")' $_DIR/.env)
 LOG_PATH_STRING=$(grep LOG_PATH_STRING $_DIR/.env | cut -d '=' -f2)
 
 # convert string into array
