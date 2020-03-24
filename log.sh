@@ -1,7 +1,13 @@
 #!/bin/bash
 
-LOG_EXT="log"
-LOG_PATH=("/home/arya/Jumphost/test" "/home/arya/Jumphost/test2" "/home/arya/Jumphost/test3")
+# current file dir
+_DIR=$(dirname "$(readlink -f "$0")")
+
+# read .env from this dir
+LOG_EXT=$(grep LOG_EXT $_DIR/.env | cut -d '=' -f2)
+LOG_PATH_STRING=$(grep LOG_PATH_STRING $_DIR/.env | cut -d '=' -f2)
+LOG_PATH=($(echo "$LOG_PATH_STRING" | tr ',' '\n'))
+
 TODAY=$(date '+%d_%m_%Y')
 
 function _archv_log() {
