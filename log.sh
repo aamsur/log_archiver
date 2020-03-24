@@ -3,12 +3,20 @@
 # current file dir
 _DIR=$(dirname "$(readlink -f "$0")")
 
-# read .env from this dir
+# read .env from current file dir
 LOG_EXT=$(grep LOG_EXT $_DIR/.env | cut -d '=' -f2)
 LOG_PATH_STRING=$(grep LOG_PATH_STRING $_DIR/.env | cut -d '=' -f2)
+
+# convert string into array
+# we need to loop this path
 LOG_PATH=($(echo "$LOG_PATH_STRING" | tr ',' '\n'))
 
 TODAY=$(date '+%d_%m_%Y')
+
+if [ -z $LOG_EXT ]; then
+    echo "Mohon periksa kembali file $_DIR/.env !"
+    exit 0
+fi
 
 function _archv_log() {
 	printf "[~] Mengarsipkan file ${LOG_EXT} ...\n\n"
@@ -26,4 +34,6 @@ function _archv_log() {
 	printf "\n[+] Mengarsipkan selesai ...\n"
 }
 
+echo "-=============================-"
+(date '+%Y/%m/%d %H:%M:%S')
 _archv_log
