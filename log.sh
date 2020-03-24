@@ -6,7 +6,7 @@ TODAY=$(date '+%d_%m_%Y')
 
 function _archv_log() {
 	printf "[~] Mengarsipkan file ${LOG_EXT} ...\n\n"
-	for x in $(find $(echo ${LOG_PATH[*]}) -type f -name "*.${LOG_EXT}" -mtime -30 -print);
+	for x in $(find $(echo ${LOG_PATH[*]}) -type f -name "*.${LOG_EXT}" -mtime +30 -print);
 	do
 		tar zcvf ${x}_${TODAY}.tgz $x 2> .removing.tmp
 		if [[ $? -eq 0 ]]; then
