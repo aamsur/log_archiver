@@ -27,7 +27,6 @@ function _archv_log() {
 			printf "[*] Berhasil mengarsipkan file: ${x}\n"
 		else
 			printf "[!] Gagal mengarsipkan file: ${x}\n"
-            rm -f $x
 		fi
 		rm -f $x .removing.tmp
 	done
