@@ -25,7 +25,7 @@ function _archv_log() {
 		tar zcvf ${x}_${TODAY}.tgz $x 2> .removing.tmp
 		if [[ $? -eq 0 ]]; then
 			printf "[*] Berhasil mengarsipkan file: ${x}\n"
-            #rm -f $x
+            rm -f $x
 		else
 			printf "[!] Gagal mengarsipkan file: ${x}\n"
 		fi
